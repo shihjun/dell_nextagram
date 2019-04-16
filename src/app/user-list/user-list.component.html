@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Nextagram</h1>
+  <div class="users">
+    <ul *ngFor="let user of users">
+      <li class="img"><img routerLink="/users/{{user.id}}" src="{{user.profileImage}}" /></li>
+      <li class="username">{{user.username}}</li>
+    </ul>
+  </div>
+</div>
