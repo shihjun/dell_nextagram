@@ -8,8 +8,8 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  userID = null
-
+  userId
+  @Input() username
 
   constructor(
     private userService: UserService,
@@ -18,12 +18,15 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     console.log("userId: " + this.route.snapshot.params.id)
+    console.log(this.username)
     this.userService
       .getUserId(this.route.snapshot.params.id)
       .subscribe(response => {
         console.log(response)
-        this.userID = response
+        this.userId = response
       })
+    console.log(this.username)
+
   }
 
 }

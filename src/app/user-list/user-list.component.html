@@ -1,9 +1,17 @@
-<div class="container">
-  <h1>Nextagram</h1>
+<div class="container" *ngIf="this.route.snapshot.routeConfig.path === 'users'">
   <div class="users">
     <ul *ngFor="let user of users">
-      <li class="img"><img routerLink="/users/{{user.id}}" src="{{user.profileImage}}" /></li>
-      <li class="username">{{user.username}}</li>
+      <li class="img">
+        <a routerLink="/users/{{user.id}}">
+          <img src="{{user.profileImage}}" />
+        </a>
+      </li>
+      <li class="username">
+        <a>{{user.username}}</a>
+      </li>
     </ul>
   </div>
 </div>
+
+
+<app-user-profile [username]="users"></app-user-profile>

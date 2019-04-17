@@ -1,0 +1,36 @@
+.header {
+  background-color: #f1f1f1 ;
+  height: 80px;
+  width: 100%;
+  top: 0px;
+  margin: 0px;
+  /* position: fixed; */
+}
+
+.header nav {
+  position: relative;
+  width: 80%;
+  left: 10%;
+  height: 100%;
+}
+
+.logo {
+  padding-top: 8px;
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+  color: black;
+}
+
+#nextagram {
+  height: 64px;
+  vertical-align: middle
+}
+
+#text {
+  margin-left: 10px;
+  font-size: 40px;
+  vertical-align: middle
+}

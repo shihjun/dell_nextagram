@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../user.service'
+import { ActivatedRoute } from '@angular/router'
 
 
 @Component({
@@ -12,10 +13,12 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.load()
+
   }
 
   load() {
@@ -23,6 +26,7 @@ export class UserListComponent implements OnInit {
       this.users = response
       console.log(this.users)
     })
+    console.log(this.route.snapshot.routeConfig.path)
   }
 
 }

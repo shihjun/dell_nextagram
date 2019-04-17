@@ -17,7 +17,7 @@
 .users ul {
   position: relative;
   width: 160px;
-  height: 220px;
+  height: 200px;
   margin: 10px;
   padding: 0;
 }
@@ -26,17 +26,19 @@
   position: relative;
   background-color: white;
   width: 160px;
-  height: 80%;
+  height: 160px;
   top: 10px;
   list-style: none;
-
+  border-radius: 50%;
+  border: 2px solid white
 }
 
 .username {
   position: relative;
   background-color: white;
   width: 160px;
-  height: 20%;
+  height: 40px;
+  margin-top: 15px;
   font-size: 18pt;
   text-align: center;
   list-style: none
@@ -46,4 +48,15 @@
   height: 160px ;
   width: 100%;
   border-radius: 50%;
+
+}
+
+.img:hover{
+  border-color: yellow;
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+  color: black;
 }
