@@ -8,8 +8,8 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  userId
-  @Input() username
+  users = null
+  userImg = null
 
   constructor(
     private userService: UserService,
@@ -17,16 +17,23 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("userId: " + this.route.snapshot.params.id)
-    console.log(this.username)
-    this.userService
-      .getUserId(this.route.snapshot.params.id)
-      .subscribe(response => {
-        console.log(response)
-        this.userId = response
-      })
-    console.log(this.username)
-
+    this.getUserImg()
   }
 
+  getUserImg() {
+    this.userService
+      .getUsers()
+      .subscribe(response => {
+        this.users = response
+        for (let user of this.users) {
+          if (this.route.snapshot.params.username == user.username) {
+            this.userService
+              .getUserId(user.id)
+              .subscribe(response => {
+                this.userImg = response
+              })
+          }
+        }
+      })
+  }
 }

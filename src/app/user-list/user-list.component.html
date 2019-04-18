@@ -1,8 +1,8 @@
-<div class="container" *ngIf="this.route.snapshot.routeConfig.path === 'users'">
+<div class="container">
   <div class="users">
     <ul *ngFor="let user of users">
       <li class="img">
-        <a routerLink="/users/{{user.id}}">
+        <a routerLink="/users/{{user.username}}">
           <img src="{{user.profileImage}}" />
         </a>
       </li>
@@ -12,6 +12,3 @@
     </ul>
   </div>
 </div>
-
-
-<app-user-profile [username]="users"></app-user-profile>
