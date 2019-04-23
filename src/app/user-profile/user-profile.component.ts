@@ -8,7 +8,9 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  users = null
+  showUserImg = false
+  userName = null
+  userImages = null
   userImg = null
 
   constructor(
@@ -18,22 +20,37 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.getUserImg()
+    this.getUserName()
   }
 
   getUserImg() {
     this.userService
-      .getUsers()
+      .getUserImg(this.route.snapshot.params.id)
       .subscribe(response => {
-        this.users = response
-        for (let user of this.users) {
-          if (this.route.snapshot.params.username == user.username) {
-            this.userService
-              .getUserId(user.id)
-              .subscribe(response => {
-                this.userImg = response
-              })
+        this.userImages = response
+        console.log(this.userImages)
+      })
+  }
+
+  getUserName() {
+    this.userService
+      .getUsersData()
+      .subscribe(response => {
+        for (let user of <any[]>response) {
+          if (this.route.snapshot.params.id == user.id) {
+            this.userName = user.username
           }
         }
       })
+  }
+
+  toggleShowUserImg(userImg) {
+    this.showUserImg = true
+    this.userImg = userImg
+  }
+
+  toggleShowUserProfile() {
+    this.showUserImg = false
+    this.userImg = null
   }
 }

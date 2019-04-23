@@ -1,21 +1,45 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { BehaviorSubject } from 'rxjs';
 
-const UsersUrl = 'https://insta.nextacademy.com/api/v1/users'
-const UserImg = 'https://insta.nextacademy.com/api/v1/images?userId'
+
+const baseUrl = 'https://insta.nextacademy.com/api/v1'
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private http: HttpClient) { }
+  private users: BehaviorSubject<any> = new BehaviorSubject([])
 
-  getUsers() {
-    return this.http.get(UsersUrl)
+  constructor(private http: HttpClient) {
+    this.getUsers().subscribe(response => {
+      this.users.next(response)
+    })
+
   }
 
-  getUserId(id) {
-    return this.http.get(UserImg + `=${id}`)
+  getUsers() {
+    return this.http.get(`${baseUrl}/users`)
+    // baseUrl + "/users"
+  }
+
+  getUserImg(id: number) {
+    return this.http.get(`${baseUrl}/images?userId=${id}`)
+  }
+
+  getUsersData() {
+    return this.users
+  }
+
+
+
+  submitSignUp(data: Object) {
+    this.http
+      .post(`${baseUrl}/users`, data)
+      .subscribe(response => {
+        console.log(response)
+      })
+
   }
 
 }

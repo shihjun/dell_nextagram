@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <ul class="column">
+      <li>
+        <img id="userImage" src="{{userImage}}">
+      </li>
+      <li>
+        <div class="like" *ngFor="let id of imageDetails" (click)="addLike()">
+          <div>{{id.like}}</div>
+        </div>
+      </li>
+      <li>
+        <div *ngFor="let comment of imageDetails">
+          <div *ngFor="let com of comment.comments">
+            <img class="comment" src="https://img.icons8.com/windows/32/000000/speech-bubble.png">
+            {{com}}
+          </div>
+        </div>
+
+        <label>Comment: </label>
+        <input type="text" [formControl]="comment" (ngSubmit)="onSubmit()" />
+        <button (click)="onSubmit()">Post</button>
+        <!-- <input type="submit" /> -->
+      </li>
+    </ul>
+  </div>
+</div>

@@ -20,7 +20,7 @@ export class UserListComponent implements OnInit {
 
   getUserList() {
     this.userService
-      .getUsers()
+      .getUsersData()
       .subscribe(response => {
         this.users = response
       })

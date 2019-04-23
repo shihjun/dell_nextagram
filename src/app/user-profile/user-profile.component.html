@@ -1,10 +1,14 @@
 <div class="container">
-  <h1>@{{this.route.snapshot.params.username}}</h1>
-  <div class="row">
-    <ul class="column" *ngFor="let userImg of userImg">
+  <h1 (click)="toggleShowUserProfile()">@{{userName}}</h1>
+  <div class="row" *ngIf="showUserImg==false">
+    <ul class="column" *ngFor="let userImg of userImages; let i = index">
       <li>
-        <img src="{{userImg}}">
+        <img src="{{userImg}}" (click)="toggleShowUserImg(userImg)">
       </li>
     </ul>
   </div>
 </div>
+
+<app-image-page *ngIf="showUserImg==true" [userImage]="userImg"></app-image-page>
+
+<!-- routerLink="/users/{{this.route.snapshot.params.id}}/{{i}}" -->
