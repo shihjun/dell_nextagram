@@ -1,0 +1,36 @@
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+<div class="container">
+  <div class="header">
+    <a>
+      <img id="profile" src="{{userProfileImg}}" />
+    </a>
+    <span><a id="username" (click)="toggleShowUserProfile()">@{{userName}}</a></span>
+  </div>
+
+
+  <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Name: </label>
+      <input type="text" formControlName="name" />
+    </div>
+    <div>
+      <label>Description: </label>
+      <input type="text" formControlName="description" />
+    </div>
+    <div>
+      <label>Blog link: </label>
+      <input type="text" formControlName="bloglink" />
+    </div>
+    <div>
+      <label>Facebook link: </label>
+      <input type="text" formControlName="fblink" />
+    </div>
+    <div>
+      <label>Email: </label>
+      <input type="email" formControlName="email" />
+    </div>
+    <input type="submit" />
+    <button routerLink="/users/{{this.route.snapshot.params.id}}">Cancel</button>
+  </form>
+
+</div>

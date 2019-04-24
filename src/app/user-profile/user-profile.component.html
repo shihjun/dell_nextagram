@@ -1,5 +1,23 @@
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 <div class="container">
-  <h1 (click)="toggleShowUserProfile()">@{{userName}}</h1>
+  <div class="header">
+    <a>
+      <img id="profile" src="{{userProfileImg}}" (click)="toggleShowUserProfile()" />
+    </a>
+    <span><a id="username" (click)="toggleShowUserProfile()">@{{userName}}</a></span>
+  </div>
+
+  <div>
+
+    <ul>
+      <li>Name: {{profileDetails[0].name}}</li>
+      <li>Description: {{profileDetails[0].description}}</li>
+      <li>Blog link: {{profileDetails[0].bloglink}}</li>
+      <li>Facebook link: {{profileDetails[0].fblink}}</li>
+      <li>Email: {{profileDetails[0].email}}</li>
+      <button routerLink="/users/{{this.route.snapshot.params.id}}/editprofile">Edit Profile</button>
+    </ul>
+  </div>
   <div class="row" *ngIf="showUserImg==false">
     <ul class="column" *ngFor="let userImg of userImages; let i = index">
       <li>

@@ -10,6 +10,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { HeaderComponent } from './header/header.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { ImagePageComponent } from './image-page/image-page.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ImagePageComponent } from './image-page/image-page.component';
     UserListComponent,
     HeaderComponent,
     SignupPageComponent,
-    ImagePageComponent
+    ImagePageComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

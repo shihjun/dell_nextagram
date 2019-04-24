@@ -1,11 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from '../user.service';
 import { ImageService } from '../image.service';
-import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
-
-
 
 @Component({
   selector: 'app-image-page',
@@ -14,13 +9,14 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ImagePageComponent implements OnInit {
   @Input() userImage = null
-  comment = new FormControl("")
 
-  imageDetails: any = [{
+  comment = new FormControl("", [Validators.required])
+
+  imageDetails: any = {
     imgURL: "",
     comments: [],
     like: null,
-  }]
+  }
 
   constructor(
     private imageService: ImageService,
@@ -30,9 +26,9 @@ export class ImagePageComponent implements OnInit {
     this.imageService.getImage().subscribe(response => {
       console.log(response)
       console.log(this.imageDetails)
-      for (let user of response) {
-        if (this.userImage == user.imgURL) {
-          this.imageDetails[0] = user
+      for (let i = 0; i < response.length; i++) {
+        if (this.userImage == response[i].imgURL) {
+          this.imageDetails = response[i]
         }
       }
     })
@@ -40,18 +36,20 @@ export class ImagePageComponent implements OnInit {
   }
 
   onSubmit() {
-    this.imageDetails[0].comments.push(this.comment.value)
-    this.imageDetails[0].imgURL = this.userImage
-    console.log(this.imageDetails)
-    this.imageService.addImage(this.imageDetails[0])
-    this.comment.setValue('')
+    if (!this.comment.invalid) {
+      this.imageDetails.comments.push(this.comment.value)
+      this.imageDetails.imgURL = this.userImage
+      console.log(this.imageDetails)
+      this.imageService.addImage(this.imageDetails)
+      this.comment.setValue('')
+    }
   }
 
   addLike() {
-    this.imageDetails[0].like += 1
+    this.imageDetails.like += 1
     console.log(this.imageDetails)
-    this.imageDetails[0].imgURL = this.userImage
-    this.imageService.addImage(this.imageDetails[0])
+    this.imageDetails.imgURL = this.userImage
+    this.imageService.addImage(this.imageDetails)
   }
 
 

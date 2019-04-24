@@ -11,7 +11,7 @@ interface Image {
   providedIn: 'root'
 })
 export class ImageService {
-  imageDetail = new BehaviorSubject<Image[]>([])
+  private imageDetail = new BehaviorSubject<Image[]>([])
 
 
 
